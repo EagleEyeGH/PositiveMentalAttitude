@@ -9,14 +9,14 @@ public class PlayerController : MonoBehaviour {
 
     public float speed;
     private int count;
-    public Text countText;
-    public Text winText;
+    //public Text countText;
+    //public Text winText;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
         count = 0;
-        SetCountText();
-        winText.text = "";
+       // SetCountText();
+       // winText.text = "";
     }
 
     void FixedUpdate() {
@@ -32,15 +32,15 @@ public class PlayerController : MonoBehaviour {
         if(other.gameObject.CompareTag("Pick Up")) {
             other.gameObject.SetActive(false);
             count++;
-            SetCountText();
+            //SetCountText();
         }
     }
 
-    private void SetCountText() {
-        countText.text = "Count: " + count.ToString();
-        if(count >= 11) {
-            winText.text = "You Win!";
-        }
-    }
+    // private void SetCountText() {
+    //     countText.text = "Count: " + count.ToString();
+    //     if(count >= 11) {
+    //         winText.text = "You Win!";
+    //     }
+    // }
 }
 
