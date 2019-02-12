@@ -2,17 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour {
+public class CameraController : MonoBehaviour
+{
 
-    public GameObject player;
+    public float speed;
+    public Transform target;
+    public Vector3 offset;
 
-    private Vector3 offset;
-
-    void Start() {
-        offset = transform.position - player.transform.position;
+    private void Start()
+    {
+        offset = transform.position - target.transform.position;
     }
 
-    void LateUpdate(){
-        transform.position = player.transform.position + offset;
+    void Update()
+    {
+        transform.LookAt(target);
+
+        if (Input.GetAxis("Vertical") != 0)
+        {
+            transform.Translate(transform.up * Input.GetAxis("Vertical") * Time.deltaTime * speed); //.up = positive y
+        }
+
+        if (Input.GetAxis("Horizontal") != 0)
+        {
+            transform.Translate(transform.right * Input.GetAxis("Horizontal") * Time.deltaTime * speed); //.right = positive x
+        }
+        transform.position = target.position + new Vector3(0, 2, 0);
     }
 }
